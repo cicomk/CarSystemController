@@ -65,10 +65,13 @@ void loop()
       Serial.println(round_counted);
     }
     roundlast = millis();
+   if(onecarmode==0){
     digitalWrite(relay, LOW);
     delay(2000);
     digitalWrite(relay, HIGH);
     delay(10000);
+   }
+   
   } else
   {
 
