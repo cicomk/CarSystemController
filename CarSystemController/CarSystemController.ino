@@ -5,6 +5,7 @@ unsigned long roundlast = 0;
 unsigned long lastbutton = 0;
 
 byte onecarmode = 0; //0-off;1-on
+byte load = 0;
 
 int sensor = 3;
 int  relay = 4;
@@ -48,7 +49,13 @@ void loop()
     digitalWrite(buzzer, LOW);
   }
 
-  if (digitalRead(sensor) == HIGH)
+  if (((digitalRead(sensor) == HIGH) && (load == 0))&&(onecarmode == 0)) {
+    delay(5000);
+    load = 1;
+
+  }
+
+  if ((digitalRead(sensor) == HIGH) && ((load == 1) || (onecarmode == 1)))
   {
     if ((last_round2 == 0) && (last_round1 != 0)) {
       last_round2 = millis();
@@ -65,13 +72,13 @@ void loop()
       Serial.println(round_counted);
     }
     roundlast = millis();
-   if(onecarmode==0){
-    digitalWrite(relay, LOW);
-    delay(2000);
-    digitalWrite(relay, HIGH);
-    delay(10000);
-   }
-   
+    if (onecarmode == 0) {
+      digitalWrite(relay, LOW);
+      delay(2000);
+      digitalWrite(relay, HIGH);
+      delay(10000);
+    }
+
   } else
   {
 
