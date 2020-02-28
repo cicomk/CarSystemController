@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 unsigned long last_round1 = 0;
 unsigned long last_round2 = 0;
 unsigned long round_counted = 0;
@@ -11,23 +12,34 @@ int sensor = 3;
 int  relay = 12;
 int buzzer = 2;
 int button = 5;
+=======
+unsigned long timer = 0;
+unsigned long last_round = 0;
 
+int sensor = 3;
+int  relay = 4;
+byte in = 0;
+>>>>>>> parent of 833ba75... Add round counting
 
-void setup() {
+void setup(){
   Serial.begin(9600);
   pinMode(sensor, INPUT);
   pinMode(button, INPUT);
   pinMode(relay, OUTPUT);
+<<<<<<< HEAD
   pinMode(relay, OUTPUT);
   pinMode(buzzer, OUTPUT);
   pinMode(LED_BUILTIN, OUTPUT);
   digitalWrite(relay, HIGH);
   digitalWrite(buzzer, LOW);
   digitalWrite(LED_BUILTIN, LOW);
+=======
+>>>>>>> parent of 833ba75... Add round counting
 }
 
 void loop()
 {
+<<<<<<< HEAD
   /*//Turn On
   if (((digitalRead(button) == HIGH) && (onecarmode == 0)) && (lastbutton < millis())) {
     digitalWrite(LED_BUILTIN, HIGH);
@@ -82,7 +94,35 @@ void loop()
 
   } else
   {
-
-
+=======
+  
+  /*if (((last_relay_nonfree + 2000)>=millis()) && (in == 1)){
+    digitalWrite(relay, LOW);
+    
+  }else {
+    digitalWrite(relay, HIGH);
+    
   }
-}
+  */
+  if (digitalRead(sensor) == HIGH)
+  {
+   //Foglalt(nonfree)
+  /* if (in == 0) {
+    last_relay_nonfree == millis();
+    Serial.println("in=1");
+    in = 1; */
+     digitalWrite(relay, LOW);
+     delay(2000);
+     digitalWrite(relay, HIGH);
+     delay(10000);
+  }else
+  {
+    
+    
+   }
+  }
+>>>>>>> parent of 833ba75... Add round counting
+
+  
+
+  
