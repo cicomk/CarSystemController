@@ -8,9 +8,9 @@ byte onecarmode = 0; //0-off;1-on
 byte load = 0;
 
 int sensor = 3;
-int  relay = 4;
-int buzzer = 5;
-int button = 6;
+int  relay = 12;
+int buzzer = 2;
+int button = 5;
 
 
 void setup() {
@@ -28,7 +28,7 @@ void setup() {
 
 void loop()
 {
-  //Turn On
+  /*//Turn On
   if (((digitalRead(button) == HIGH) && (onecarmode == 0)) && (lastbutton < millis())) {
     digitalWrite(LED_BUILTIN, HIGH);
     onecarmode = 1;
@@ -41,21 +41,22 @@ void loop()
     onecarmode = 0;
     lastbutton = (millis() + 2000);
   }
-
+*/
   if (((millis() - roundlast) >= round_counted) && (round_counted != 0)) {
     Serial.println((millis() - roundlast));
     digitalWrite(buzzer, HIGH);
   } else {
     digitalWrite(buzzer, LOW);
   }
+  
 
-  if (((digitalRead(sensor) == HIGH) && (load == 0))&&(onecarmode == 0)) {
+  if (((digitalRead(sensor) == HIGH) && (load == 0))) {
     delay(5000);
     load = 1;
 
   }
 
-  if ((digitalRead(sensor) == HIGH) && ((load == 1) || (onecarmode == 1)))
+  if ((digitalRead(sensor) == HIGH) && ((load == 1)))
   {
     if ((last_round2 == 0) && (last_round1 != 0)) {
       last_round2 = millis();
